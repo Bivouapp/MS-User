@@ -15,14 +15,14 @@ public class Bivouac {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long bivouac_id;
     private float price;
-    private String rentalType;
-    private String fieldType;
+    private String rental_type;
+    private String field_type;
     private float area;
     private String description;
-    private boolean isPmr;
+    private boolean is_pmr;
     private String privacy;
-    private boolean isHost;
-    private boolean isAdmin;
+    private boolean is_host;
+    private boolean is_admin;
 
     @ManyToMany
     @JoinTable(name = "bivouac_equipments",joinColumns = @JoinColumn(name = "bivouac_id"),inverseJoinColumns = @JoinColumn(name = "equipment_id"))
@@ -36,12 +36,12 @@ public class Bivouac {
         return price;
     }
 
-    public String getRentalType() {
-        return rentalType;
+    public String getRental_type() {
+        return rental_type;
     }
 
-    public String getFieldType() {
-        return fieldType;
+    public String getField_type() {
+        return field_type;
     }
 
     public float getArea() {
@@ -52,20 +52,20 @@ public class Bivouac {
         return description;
     }
 
-    public boolean isPmr() {
-        return isPmr;
+    public boolean isIs_pmr() {
+        return is_pmr;
     }
 
     public String getPrivacy() {
         return privacy;
     }
 
-    public boolean isHost() {
-        return isHost;
+    public boolean isIs_host() {
+        return is_host;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public boolean isIs_admin() {
+        return is_admin;
     }
 
     public Set<Equipment> getEquipments() {
@@ -80,12 +80,12 @@ public class Bivouac {
         this.price = price;
     }
 
-    public void setRentalType(String rentalType) {
-        this.rentalType = rentalType;
+    public void setRental_type(String rentalType) {
+        this.rental_type = rentalType;
     }
 
-    public void setFieldType(String fieldType) {
-        this.fieldType = fieldType;
+    public void setField_type(String fieldType) {
+        this.field_type = fieldType;
     }
 
     public void setArea(float area) {
@@ -96,20 +96,20 @@ public class Bivouac {
         this.description = description;
     }
 
-    public void setPmr(boolean pmr) {
-        isPmr = pmr;
+    public void setIs_pmr(boolean is_pmr) {
+        this.is_pmr = is_pmr;
     }
 
     public void setPrivacy(String privacy) {
         this.privacy = privacy;
     }
 
-    public void setHost(boolean host) {
-        isHost = host;
+    public void setIs_host(boolean is_host) {
+        this.is_host = is_host;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setIs_admin(boolean is_admin) {
+        this.is_admin = is_admin;
     }
 
     public void setEquipments(Set<Equipment> equipments) {

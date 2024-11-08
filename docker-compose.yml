@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   app:
@@ -10,7 +10,7 @@ services:
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres-db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/bivouac_manager_db
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
     volumes:
@@ -21,7 +21,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: postgres-db
+      POSTGRES_DB: bivouac_manager_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
