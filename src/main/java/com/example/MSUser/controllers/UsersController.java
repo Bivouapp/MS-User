@@ -2,6 +2,7 @@ package com.example.MSUser.controllers;
 
 import com.example.MSUser.dtos.LoginRequest;
 import com.example.MSUser.dtos.RegisterRequest;
+import com.example.MSUser.dtos.UpdateUserRequest;
 import com.example.MSUser.models.User;
 import com.example.MSUser.repositories.UserRepository;
 import com.example.MSUser.services.UserService;
@@ -53,37 +54,36 @@ public class UsersController {
         return userRepository.findAll();
     }
 
-    /*
-    @GetMapping
-    @RequestMapping("{id}")
-    public User get(@PathVariable Long id) {
-        if (userRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID "+id+" not found");
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest updateRequest) {
+        // Vérifier si l'utilisateur existe
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
-        return userRepository.getById(id);
+
+        // Récupérer l'utilisateur existant
+        User user = optionalUser.get();
+
+        // Mettre à jour les champs modifiables
+        if (updateRequest.getFirstName() != null) {
+            user.setFirst_name(updateRequest.getFirstName());
+        }
+        if (updateRequest.getLastName() != null) {
+            user.setLast_name(updateRequest.getLastName());
+        }
+        if (updateRequest.getPhoneNumber() != null) {
+            user.setPhone_number(updateRequest.getPhoneNumber());
+        }
+        if (updateRequest.getIsHost() != null) {
+            user.setIs_host(updateRequest.getIsHost());
+        }
+
+        // Sauvegarder les modifications
+        return userRepository.save(user);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody final User user) {
-        return userRepository.saveAndFlush(user);
-    }
 
-    @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
-    public void delete(@PathVariable Long id) {
-        // Toujours verifier s’il faut
-        // les enregistrements enfants
-        userRepository.deleteById(id);
-    }
 
-    @RequestMapping(value="{id}",method = RequestMethod.PUT)
-    public User update(@PathVariable Long id, @RequestBody User user) {
-        // TO DO: Ajouter ici une validation si tous
-        // les champs ont ete passes
-        // Sinon , retourner une erreur 400 (Bad Payload )
-        User existingUser = userRepository.getById(id);
-        BeanUtils.copyProperties(user,existingUser ,"user_id");
-        return userRepository.saveAndFlush(existingUser);
-    }*/
 
 }

@@ -80,8 +80,9 @@ public class User {
         return is_admin;
     }
 
-    /* public void setLocations(List<Location> locations) {
-        this.locations = locations;
-    }*/
+    public void setIs_host(Boolean isHost) {
+        this.is_host = isHost;
+    }
+
 
 }
