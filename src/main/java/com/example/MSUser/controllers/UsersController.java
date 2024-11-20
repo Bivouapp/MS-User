@@ -54,6 +54,18 @@ public class UsersController {
         return userRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Long id) {
+        return userRepository.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+    }
+
+    @GetMapping("email/{email}")
+    public User getUserByEmail(@PathVariable String email) {
+        return userRepository.findByEmail(email).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+    }
+
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest updateRequest) {
         // Vérifier si l'utilisateur existe
