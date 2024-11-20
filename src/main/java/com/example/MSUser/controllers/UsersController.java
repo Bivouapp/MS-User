@@ -79,9 +79,20 @@ public class UsersController {
             user.setIs_host(updateRequest.getIsHost());
         }
 
-        // Sauvegarder les modifications
         return userRepository.save(user);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable Long id) {
+        // Vérifier si l'utilisateur existe
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID " + id + " not found");
+        }
+        userRepository.deleteById(id);
+    }
+
 
 
 
