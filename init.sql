@@ -25,11 +25,13 @@ CREATE TABLE bivouac_equipments
 
 CREATE TABLE users(
     user_id serial NOT NULL PRIMARY KEY,
-    first_name varchar(30) NOT NULL,
-    last_name varchar(30) NOT NULL,
+    first_name varchar(30),
+    last_name varchar(30),
     email varchar(80) NOT NULL,
-    phone_number varchar(20) NOT NULL,
-    password varchar(100) NOT NULL
+    phone_number varchar(20),
+    password varchar(100) NOT NULL,
+    is_host boolean default false,
+    is_admin boolean default false,
 );
 
 CREATE TABLE locations(

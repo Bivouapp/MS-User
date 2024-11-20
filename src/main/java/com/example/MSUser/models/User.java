@@ -1,9 +1,7 @@
-package com.example.demo.models;
+package com.example.MSUser.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity(name="users")
@@ -19,10 +17,12 @@ public class User {
     private String email;
     private String phone_number;
     private String password;
+    private Boolean is_admin;
+    private Boolean is_host;
 
-    @ManyToMany
-    @JoinTable(name="user_locations", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="location_id"))
-    private List<Location> locations;
+    //@ManyToMany
+    //@JoinTable(name="user_locations", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="location_id"))
+    //private List<Location> locations;
 
     public long getUser_id() {
         return user_id;
@@ -48,9 +48,9 @@ public class User {
         return password;
     }
 
-    public List<Location> getLocations() {
+    /*public List<Location> getLocations() {
         return locations;
-    }
+    }*/
 
     public void setUser_id(long user_id) {
         this.user_id = user_id;
@@ -76,8 +76,12 @@ public class User {
         this.password = password;
     }
 
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
+    public Boolean isAdmin() {
+        return is_admin;
     }
+
+    /* public void setLocations(List<Location> locations) {
+        this.locations = locations;
+    }*/
 
 }

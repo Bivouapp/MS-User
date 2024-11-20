@@ -1,7 +1,11 @@
-package com.example.demo.controllers;
+package com.example.MSUser.controllers;
 
-import com.example.demo.models.User;
-import com.example.demo.repositories.UserRepository;
+import com.example.MSUser.dtos.LoginRequest;
+import com.example.MSUser.dtos.RegisterRequest;
+import com.example.MSUser.models.User;
+import com.example.MSUser.repositories.UserRepository;
+import com.example.MSUser.services.UserService;
+import com.example.MSUser.utils.JwtUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,19 +13,47 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/users")
 public class UsersController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private JwtUtils jwtUtils;
+
+    @PostMapping("/register")
+    public User register(@RequestBody RegisterRequest registerRequest) {
+        User user = new User();
+        user.setEmail(registerRequest.getEmail());
+        user.setPassword(registerRequest.getPassword());
+
+        return userService.register(user);
+    }
+
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginRequest loginRequest) {
+        Optional<User> user = userService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
+        if (user.isPresent()) {
+            return jwtUtils.generateToken(user.get());
+        }
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid email or password");
+    }
+
 
     @GetMapping
     public List<User> list () {
         return userRepository.findAll();
     }
 
+    /*
     @GetMapping
     @RequestMapping("{id}")
     public User get(@PathVariable Long id) {
@@ -52,6 +84,6 @@ public class UsersController {
         User existingUser = userRepository.getById(id);
         BeanUtils.copyProperties(user,existingUser ,"user_id");
         return userRepository.saveAndFlush(existingUser);
-    }
+    }*/
 
 }
