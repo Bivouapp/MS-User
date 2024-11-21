@@ -1,4 +1,4 @@
-package com.example.MSUser.security;
+/*package com.example.MSUser.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,5 +33,5 @@ public class WebConfig implements WebMvcConfigurer {
             }
         };
     }
-}
+}*/
 
