@@ -1,3 +1,5 @@
+DROP TABLE users;
+
 CREATE TABLE users (
     user_id serial PRIMARY KEY,
     first_name varchar(30),
