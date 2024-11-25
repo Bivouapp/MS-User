@@ -1,5 +1,6 @@
 package com.example.MSUser.controllers;
 
+import com.example.MSUser.dtos.FavouriteRequest;
 import com.example.MSUser.models.FavouriteBivouacId;
 import com.example.MSUser.models.FavouriteBivouacs;
 import com.example.MSUser.models.User;
@@ -25,7 +26,11 @@ public class FavouriteBivouacController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public FavouriteBivouacs createFavouriteBivouac(@RequestParam Long userId, @RequestParam Long bivouacId) {
+    public FavouriteBivouacs createFavouriteBivouac(@RequestBody FavouriteRequest request) {
+        Long userId = request.getUserId();
+        Long bivouacId = request.getBivouacId();
+
+        // Récupérer l'utilisateur
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
@@ -35,6 +40,7 @@ public class FavouriteBivouacController {
 
         return favouriteBivouacRepository.save(favouriteBivouac);
     }
+
 
 
     @GetMapping("/{userId}")
