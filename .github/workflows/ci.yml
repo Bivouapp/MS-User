@@ -29,8 +29,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: 21  # Version de Java utilisée
-          distribution: temurin  # Spécification de la distribution Java
+          java-version: '21' # Notez les guillemets autour de la version
+          distribution: 'temurin' # Temurin est une distribution couramment utilisée
 
       - name: Install dependencies
         run: ./gradlew dependencies
