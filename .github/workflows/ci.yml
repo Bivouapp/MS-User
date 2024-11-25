@@ -19,7 +19,7 @@ jobs:
           - 5432:5432
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}  # Utilisation du secret GitHub
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB: user_manager_db
 
     steps:
@@ -30,6 +30,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 21  # Version de Java utilisée
+          distribution: temurin  # Spécification de la distribution Java
 
       - name: Install dependencies
         run: ./gradlew dependencies
@@ -38,5 +39,5 @@ jobs:
         env:
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/user_manager_db
           SPRING_DATASOURCE_USERNAME: postgres
-          SPRING_DATASOURCE_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}  # Utilisation du secret ici aussi
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         run: ./gradlew test
