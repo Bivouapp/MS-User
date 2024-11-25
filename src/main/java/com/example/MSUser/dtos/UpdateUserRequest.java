@@ -6,7 +6,11 @@ public class UpdateUserRequest {
     private String phoneNumber;
     private Boolean isHost;
 
-    // Getters et setters
+
+    public UpdateUserRequest() {
+
+    }
+
     public String getFirstName() {
         return firstName;
     }

@@ -35,4 +35,16 @@ public class UserService {
         }
         return Optional.empty();
     }
+
+    public Optional<User> getUserById(long l) {
+        return userRepository.findById(l);
+    }
+
+    public User updateUser(long anyLong, User any) {
+        return userRepository.save(any);
+    }
+
+    public void deleteUser(long eq) {
+        userRepository.deleteById(eq);
+    }
 }

@@ -1,1 +1,1 @@
-rootProject.name = "MS-Bivouac"
+rootProject.name = "MS-User"

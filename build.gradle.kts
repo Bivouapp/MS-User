@@ -36,6 +36,14 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+
+	// Tests unitaires avec JUnit et Mockito
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+	testImplementation("org.mockito:mockito-core:5.14.2")
+	testImplementation("org.mockito:mockito-inline:5.2.0")
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<Test> {
