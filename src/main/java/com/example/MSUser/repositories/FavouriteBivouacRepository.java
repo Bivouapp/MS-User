@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface FavouriteBivouacRepository extends JpaRepository<FavouriteBivouacs, FavouriteBivouacId> {
 
-    List<FavouriteBivouacs> findAllByUser_UserId(Long userId);
+    List<FavouriteBivouacs> findAllByUser_User_id(Long userId);
 }
