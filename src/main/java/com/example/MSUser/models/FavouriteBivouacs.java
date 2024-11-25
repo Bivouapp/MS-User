@@ -9,7 +9,7 @@ public class FavouriteBivouacs {
     private FavouriteBivouacId id;
 
     @ManyToOne
-    @MapsId("user_id")
+    @MapsId("userId")
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
