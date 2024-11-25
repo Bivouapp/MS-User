@@ -45,7 +45,7 @@ public class FavouriteBivouacController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
 
-        return favouriteBivouacRepository.findAllByUser_UserId(userId);
+        return favouriteBivouacRepository.findAllByUser_User_id(userId);
     }
 
 
