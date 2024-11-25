@@ -20,9 +20,7 @@ public class User {
     private Boolean is_admin;
     private Boolean is_host;
 
-    //@ManyToMany
-    //@JoinTable(name="user_locations", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="location_id"))
-    //private List<Location> locations;
+
 
     public long getUser_id() {
         return user_id;

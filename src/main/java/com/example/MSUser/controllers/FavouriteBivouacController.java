@@ -26,7 +26,6 @@ public class FavouriteBivouacController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public FavouriteBivouacs createFavouriteBivouac(@RequestParam Long userId, @RequestParam Long bivouacId) {
-        // Vérifie si l'utilisateur existe
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
