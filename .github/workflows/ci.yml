@@ -27,10 +27,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '21' # Notez les guillemets autour de la version
-          distribution: 'temurin' # Temurin est une distribution couramment utilisée
+        steps:
+          - uses: actions/checkout@v4
+          - uses: actions/setup-java@v4
+            with:
+              distribution: 'temurin' # See 'Supported distributions' for available options
+              java-version: '21'
+          - run: java HelloWorldApp.java
 
       - name: Install dependencies
         run: ./gradlew dependencies
