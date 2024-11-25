@@ -56,12 +56,13 @@ public class FavouriteBivouacController {
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteFavouriteBivouac(@RequestParam Long userId, @RequestParam Long bivouacId) {
-        FavouriteBivouacId favouriteBivouacId = new FavouriteBivouacId(userId, bivouacId);
+    public void deleteFavouriteBivouac(@RequestBody FavouriteRequest request) {
+        FavouriteBivouacId favouriteBivouacId = new FavouriteBivouacId(request.getUserId(), request.getBivouacId());
 
         FavouriteBivouacs favouriteBivouac = favouriteBivouacRepository.findById(favouriteBivouacId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Favourite not found"));
 
         favouriteBivouacRepository.delete(favouriteBivouac);
     }
+
 }
