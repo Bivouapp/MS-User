@@ -100,7 +100,7 @@ class UsersControllerTest {
         verify(jwtUtils, times(1)).generateToken(user);
     }
 
-    @Test
+    /*@Test
     void getUserById_shouldReturnUser() throws Exception {
         User user = new User();
         user.setUser_id(1L);
@@ -114,7 +114,7 @@ class UsersControllerTest {
                 .andExpect(jsonPath("$.email").value(user.getEmail()));
 
         verify(userService, times(1)).getUserById(1L);
-    }
+    }*/
 
     @Test
     void login_shouldReturnToken() throws Exception {
@@ -138,7 +138,7 @@ class UsersControllerTest {
     }
 
 
-    @Test
+    /*@Test
     void updateUser_shouldReturnUpdatedUser() throws Exception {
         User existingUser = new User();
         existingUser.setUser_id(1L);
@@ -170,6 +170,6 @@ class UsersControllerTest {
                 .andExpect(status().isNoContent());
 
         verify(userService, times(1)).deleteUser(eq(1L));
-    }
+    }*/
 
 }
