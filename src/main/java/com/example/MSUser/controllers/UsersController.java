@@ -1,6 +1,7 @@
 package com.example.MSUser.controllers;
 
 import com.example.MSUser.dtos.LoginRequest;
+import com.example.MSUser.dtos.LoginResponse;
 import com.example.MSUser.dtos.RegisterRequest;
 import com.example.MSUser.dtos.UpdateUserRequest;
 import com.example.MSUser.models.User;
@@ -40,13 +41,15 @@ public class UsersController {
 
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest loginRequest) {
+    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
         Optional<User> user = userService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
         if (user.isPresent()) {
-            return jwtUtils.generateToken(user.get());
+            String token = jwtUtils.generateToken(user.get());
+            return new LoginResponse(token, user.get().getUser_id());
         }
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid email or password");
     }
+
 
 
     @GetMapping
