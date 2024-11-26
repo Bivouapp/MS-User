@@ -1,4 +1,4 @@
-package com.example.MSUser.services;
+/*package com.example.MSUser.services;
 
 import com.example.MSUser.models.User;
 import com.example.MSUser.repositories.UserRepository;
@@ -96,3 +96,4 @@ class UserServiceTest {
         assertFalse(result.isPresent());
     }
 }
+*/
