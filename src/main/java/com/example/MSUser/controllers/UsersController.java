@@ -69,6 +69,11 @@ public class UsersController {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
+    @GetMapping("/hosts")
+    public List<User> getHosts() {
+        return userRepository.findByIsHostTrue();
+    }
+
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest updateRequest) {
         // Vérifier si l'utilisateur existe
