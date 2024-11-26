@@ -71,7 +71,7 @@ public class UsersController {
 
     @GetMapping("/hosts")
     public List<User> getHosts() {
-        return userRepository.findByIsHostTrue();
+        return userRepository.findByIs_hostTrue();
     }
 
     @PutMapping("/{id}")
