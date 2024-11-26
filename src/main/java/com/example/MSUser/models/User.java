@@ -19,7 +19,8 @@ public class User {
     private String phone_number;
     private String password;
     private Boolean is_admin;
-    private Boolean is_host;
+    @Column(name = "is_host")
+    private Boolean isHost;
 
 
 
