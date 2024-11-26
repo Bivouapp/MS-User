@@ -81,7 +81,7 @@ public class User {
     }
 
     public void setIs_host(Boolean isHost) {
-        this.is_host = isHost;
+        this.isHost = isHost;
     }
 
 
