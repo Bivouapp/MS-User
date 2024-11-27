@@ -102,6 +102,19 @@ public class UsersController {
         return userRepository.save(user);
     }
 
+    @PutMapping("/setHost/{id}")
+    public User setHost(@PathVariable Long id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+
+        User user = optionalUser.get();
+        user.setIs_host(true);
+
+        return userRepository.save(user);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long id) {
